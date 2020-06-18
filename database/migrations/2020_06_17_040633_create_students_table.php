@@ -21,7 +21,7 @@ class CreateStudentsTable extends Migration
             $table->string('description');
             $table->string('picture');
             $table->integer('active_followUP');
-            $table->unsignedBigInteger('user_id')->nullablle();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')

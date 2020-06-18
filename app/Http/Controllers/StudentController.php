@@ -14,7 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::all();
+        return view('studentView.studentOutFollowUp', compact('students'));
     }
 
     /**
@@ -62,7 +63,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $students = Student::find($id);
+        return view('studentView.showDetailStudent', compact('students'));
     }
 
     /**
@@ -96,8 +98,6 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        $student = new Student;
-        $student->delete($id);
-        return redirect('/home');
+        //
     }
 }

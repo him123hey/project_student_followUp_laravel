@@ -25,14 +25,18 @@
                      @if($student->active_followUP == 1)
                     <tr>
                         <td>{{$student->id}}</td>
-                        <td><img src="{{asset('img/'.$student->picture)}}" style="width:100px;"></td>
-                        <td>{{$student->lastName}}</td>
+                        <td><img src="{{asset('img/'.$student->picture)}}" style="width:100px; height:100px;"></td>
+                        <td>{{$student->firstName}}</td>
                         <td>{{$student->lastName}}</td>
                         <td>{{$student->class}}</td>
                         <td>
-                            <a href="#" class="text-primary">Edit</a>
+                            <a href="{{route('students.edit',$student->id)}}" class="text-primary">Edit</a>
                             <a href="{{route('students.show', $student->id)}}" class="text-success">View Detail</a>
-                            <a href="#" class="text-danger">Out Follow Up</a>
+                            <form action="{{route('outFollowUp', $student->id)}}" method="post">
+                                @csrf
+                                @method('post')
+                                <button type="submit" class="btn btn-danger">Out Follow Up</button>&nbsp;&nbsp;
+                            </form>
                         </td>
                     </tr>
                     @endif

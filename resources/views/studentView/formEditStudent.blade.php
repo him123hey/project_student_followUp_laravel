@@ -13,43 +13,44 @@
             <div class="col-6">
                 <div class="card mt-5">
                     <div class="card-header bg-success text-center text-light">
-                        <h2>Form Add New Student</h2>
+                        <h2>Form Edit Student</h2>
                     </div>
                     <div class="card-body">
-                    <form action="{{route('students.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('students.update', $students->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('put')
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name...">
+                        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First Name..." value="{{$students->firstName}}">
                     </div>
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name...">
+                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Last Name..." value="{{$students->lastName}}">
                     </div>
                     <div class="form-group">
                         <label for="class">Class</label>
-                        <input type="text" name="class" id="class" class="form-control" placeholder="Class...">
+                        <input type="text" name="class" id="class" class="form-control" placeholder="Class..." value="{{$students->class}}">
                     </div>
                     <div class="form-group">
                         <label for="user">Turtor</label>
                         <select name="user" id="user" class="form-control">
-                                    <option selected disabled>Choose turtor...</option>
+                            <option selected disabled>Tutor</option>
                             @foreach($users as $user)
-                                @if($user->role == 0)
-                                    <option value="{{$user->id}}">{{$user->firstName}} {{$user->lastName}}</option>
+                                @if($user->role== 0)
+                                    <option <?php if($students->user_id == $user->id){?>selected="selected"<?php } ?> value="{{$user->id}}">{{$user->firstName." ".$user->lastName}}</option>
                                 @endif
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="profile">Profile</label>
-                        <input type="file" name="profile" id="profile">
+                        <input type="file" name="profile" id="profile" value="{{$students->picture}}">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea name="description" id="description" cols="67" rows="3"></textarea>
+                        <textarea name="description" id="description" cols="67" rows="3">{{$students->description}}</textarea>
                     </div>
-                    <button type="submite" class="btn btn-success">Add New Student</button>
+                    <button type="submite" class="btn btn-success">Edit Student</button>
                     <a href="{{route('home')}}" class="btn btn-danger float-right">Cancel</a>
                 </form>
                     </div>

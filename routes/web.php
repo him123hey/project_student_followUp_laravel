@@ -29,4 +29,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('students', 'StudentController');
+Route::resource('comments', 'CommentController');
 Route::get('addStudent', 'StudentController@create')->name('addStudent');
+Route::post('outFollowUp{id}', 'StudentController@outFollowUp')->name('outFollowUp');
+Route::post('inFollowUp{id}', 'StudentController@addIntoFollowUp')->name('inFollowUp');

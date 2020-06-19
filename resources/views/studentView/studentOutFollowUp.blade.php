@@ -25,12 +25,16 @@
                     <a href="#">
                     <tr>
                         <td>{{$student->id}}</td>
-                        <td><img src="{{asset('img/'.$student->picture)}}" style="width:100px;"></td>
+                        <td><img src="{{asset('img/'.$student->picture)}}" style="width:100px; height:100px;"></td>
                         <td>{{$student->lastName}}</td>
                         <td>{{$student->lastName}}</td>
                         <td>{{$student->class}}</td>
                         <td>
-                            <a href="#" class="text-primary">Edit</a>
+                            <form action="{{route('inFollowUp', $student->id)}}" method="post">
+                                @csrf
+                                @method('post')
+                                <button type="submit" class="btn btn-primary">Follow Up</button>&nbsp;&nbsp;
+                            </form>
                         </td>
                     </tr>
                     </a>

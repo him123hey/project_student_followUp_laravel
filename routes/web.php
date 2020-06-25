@@ -29,7 +29,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('students', 'StudentController');
-Route::resource('comments', 'CommentController');
+Route::post('post{id}', 'CommentController@post')->name('postComment');
 Route::get('addStudent', 'StudentController@create')->name('addStudent');
 Route::post('outFollowUp{id}', 'StudentController@outFollowUp')->name('outFollowUp');
 Route::post('inFollowUp{id}', 'StudentController@addIntoFollowUp')->name('inFollowUp');
+Route::get('deleteComment{id}','CommentController@delete')->name('deleteComment');
+Route::get('showEdit{id}','CommentController@showForm')->name('showEdit');
+Route::put('updateComment{id}','CommentController@update')->name('updateComment');

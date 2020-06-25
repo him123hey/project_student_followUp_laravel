@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Student;
 use App\User;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -63,9 +64,11 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $users = User::find($id);
-        $students = Student::find($id);
-        return view('studentView.showDetailStudent', compact('students','users'));
+        $student = Student::find($id);
+        $user = User::find($id);
+        $comments = $student->comments;
+        
+        return view('studentView.showDetailStudent', compact('student','comments','user'));
     }
 
     /**
@@ -76,9 +79,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        $users = User::all();
         $students = Student::find($id);
-        return view('studentView.formEditStudent',compact('students','users'));
+        $users = User::all();
+        return view('studentView.formEditStudent',compact('students', 'users'));
     }
 
     /**
